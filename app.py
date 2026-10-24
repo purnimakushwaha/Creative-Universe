@@ -121,7 +121,7 @@ with right:
             <div class="app-icon">💜</div>
             <h2>MoodSpark</h2>
             <p class="app-description">
-                Explore Kritika's mood-focused experience
+                Explore mood-focused experience
                 and discover what the app offers.
             </p>
         </div>
