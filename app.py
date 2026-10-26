@@ -16,7 +16,7 @@ st.set_page_config(
 # APPLICATION URLS
 # =====================================================
 
-DRAWING_URL = "https://aicharacterstudio-26.streamlit.app"
+DRAWING_URL = "https://ai-drawing-studio.streamlit.app/"
 MOODSPARK_URL = "https://moodspark-pe81.onrender.com"
 
 
