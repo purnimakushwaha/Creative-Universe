@@ -1,28 +1,26 @@
+
 import streamlit as st
+import streamlit.components.v1 as components
 
 # =====================================================
 # PAGE CONFIGURATION
 # =====================================================
-
 st.set_page_config(
     page_title="Creative Universe",
     page_icon="🌌",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 # =====================================================
-# APPLICATION URLS
+# DEPLOYED APPLICATION URLS
 # =====================================================
-
 DRAWING_URL = "https://ai-drawing-studio.streamlit.app/"
 MOODSPARK_URL = "https://moodspark-pe81.onrender.com"
 
-
 # =====================================================
-# SESSION STATE
+# SESSION STATE / NAVIGATION
 # =====================================================
-
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
@@ -31,15 +29,25 @@ def navigate_to(page_name):
     st.session_state.page = page_name
 
 
-# =====================================================
-# SAME-TAB LINK FUNCTION
-# =====================================================
+def show_embedded_app(url, title):
+    st.subheader(title)
 
-def launch_link(url, label):
-    # Streamlit's native link button is more reliable than raw HTML links
-    # inside the app's embedded frontend. It opens the destination safely.
+    st.info(
+        "The project is loading inside Creative Universe. "
+        "If it does not appear, the website may block embedding. "
+        "Use the direct-open button below."
+    )
+
+    components.iframe(
+        url,
+        height=780,
+        scrolling=True,
+    )
+
+    st.write("")
+
     st.link_button(
-        label,
+        f"Open {title} directly ↗",
         url,
         use_container_width=True,
     )
@@ -48,7 +56,6 @@ def launch_link(url, label):
 # =====================================================
 # CUSTOM CSS
 # =====================================================
-
 st.markdown(
     """
     <style>
@@ -58,9 +65,22 @@ st.markdown(
 
     .stApp {
         background:
-            radial-gradient(circle at 10% 10%, #172554 0%, transparent 35%),
-            radial-gradient(circle at 90% 20%, #312e81 0%, transparent 30%),
-            linear-gradient(135deg, #080d1b, #10172a 55%, #080d1b);
+            radial-gradient(
+                circle at 10% 10%,
+                #172554 0%,
+                transparent 35%
+            ),
+            radial-gradient(
+                circle at 90% 20%,
+                #312e81 0%,
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #080d1b,
+                #10172a 55%,
+                #080d1b
+            );
         color: #f8fafc;
         font-family: 'Inter', sans-serif;
     }
@@ -169,17 +189,6 @@ st.markdown(
         border: 1px solid rgba(129,140,248,0.28);
     }
 
-    .info-box {
-        padding: 18px;
-        border-radius: 14px;
-        background: rgba(30,41,59,0.80);
-        border: 1px solid rgba(148,163,184,0.20);
-        color: #cbd5e1;
-        font-size: 14px;
-        line-height: 1.8;
-        margin-bottom: 20px;
-    }
-
     .footer {
         text-align: center;
         color: #94a3b8;
@@ -201,7 +210,7 @@ st.markdown(
     }
 
     div.stLinkButton > a {
-        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        background: linear-gradient(90deg,#6366f1,#8b5cf6);
         border: 1px solid rgba(255,255,255,0.18);
         color: #ffffff;
     }
@@ -216,25 +225,20 @@ st.markdown(
         color: #c4b5fd;
     }
 
-    #MainMenu {
-        visibility: hidden;
-    }
-
+    #MainMenu,
     footer {
         visibility: hidden;
     }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 
 # =====================================================
-# SIDEBAR
+# SIDEBAR NAVIGATION
 # =====================================================
-
 with st.sidebar:
-
     st.markdown(
         """
         <div style="text-align:center;padding:20px 5px;">
@@ -252,48 +256,43 @@ with st.sidebar:
             ">UNIVERSE</div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
     st.markdown("---")
     st.caption("NAVIGATION")
 
-    if st.button("🏠 Home", key="nav_home", use_container_width=True):
+    if st.button("🏠 Home", key="nav_home",
+                 use_container_width=True):
         navigate_to("Home")
         st.rerun()
 
-    if st.button(
-        "🎨 AI Drawing Studio",
-        key="nav_drawing",
-        use_container_width=True
-    ):
+    if st.button("🎨 AI Drawing Studio",
+                 key="nav_drawing",
+                 use_container_width=True):
         navigate_to("AI Drawing Studio")
         st.rerun()
 
-    if st.button(
-        "✨ MoodSpark",
-        key="nav_moodspark",
-        use_container_width=True
-    ):
+    if st.button("✨ MoodSpark",
+                 key="nav_moodspark",
+                 use_container_width=True):
         navigate_to("MoodSpark")
         st.rerun()
 
     st.markdown("---")
     st.markdown("### 💡 Explore")
-
     st.caption(
         "Discover creativity, express yourself, "
         "and explore new ideas."
     )
 
     st.markdown("---")
-    st.caption("Made with Python and Streamlit")
+    st.caption("Dashboard collaboration: Purnima & Kritika")
 
 
 # =====================================================
 # HOME PAGE
 # =====================================================
-
 if st.session_state.page == "Home":
 
     st.markdown(
@@ -308,117 +307,108 @@ if st.session_state.page == "Home":
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
     st.markdown(
-        '<div class="section-title">Explore Your Creative Space</div>',
-        unsafe_allow_html=True
+        '<div class="section-title">'
+        'Explore Your Creative Space</div>',
+        unsafe_allow_html=True,
     )
 
     st.markdown(
         '<div class="section-description">'
-        'Choose a tool and start exploring.'
+        'Choose a project to open it inside this dashboard.'
         '</div>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
     col1, col2 = st.columns(2, gap="large")
 
-    # -------------------------------------------------
-    # AI DRAWING STUDIO CARD
-    # -------------------------------------------------
-
+    # AI DRAWING STUDIO
     with col1:
-
         st.markdown(
             """
             <div class="app-card drawing-card">
                 <div class="card-icon">🎨</div>
                 <div class="card-title">AI Drawing Studio</div>
                 <div class="card-description">
-                    Bring your imagination to life. Explore
-                    AI-powered drawing and transform your ideas
-                    into visual concepts.
+                    Bring your imagination to life with drawing
+                    challenges, digital art, and AI-powered
+                    creative feedback.
                 </div>
                 <span class="feature-tag">AI Creativity</span>
                 <span class="feature-tag">Digital Art</span>
                 <span class="feature-tag">Visual Ideas</span>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
         if st.button(
-            "🎨 Explore Drawing Studio",
+            "🎨 Open inside Creative Universe",
             key="home_explore_drawing",
-            use_container_width=True
+            use_container_width=True,
         ):
             navigate_to("AI Drawing Studio")
             st.rerun()
 
-        launch_link(
+        st.link_button(
+            "Open AI Drawing Studio directly ↗",
             DRAWING_URL,
-            "🚀 Launch AI Drawing Studio"
+            use_container_width=True,
         )
 
-    # -------------------------------------------------
-    # MOODSPARK CARD
-    # -------------------------------------------------
-
+    # MOODSPARK
     with col2:
-
         st.markdown(
             """
             <div class="app-card mood-card">
                 <div class="card-icon">✨</div>
                 <div class="card-title">MoodSpark</div>
                 <div class="card-description">
-                    Discover a space for moods, inspiration,
-                    and positive moments. Take a break and
-                    explore something uplifting.
+                    Explore Kritika's mood-focused experience,
+                    inspiration, and positive moments.
                 </div>
                 <span class="feature-tag">Mood &amp; Inspiration</span>
                 <span class="feature-tag">Self-Expression</span>
                 <span class="feature-tag">Positive Vibes</span>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
         if st.button(
-            "✨ Explore MoodSpark",
+            "✨ Open inside Creative Universe",
             key="home_explore_moodspark",
-            use_container_width=True
+            use_container_width=True,
         ):
             navigate_to("MoodSpark")
             st.rerun()
 
-        launch_link(
+        st.link_button(
+            "Open MoodSpark directly ↗",
             MOODSPARK_URL,
-            "✨ Launch MoodSpark"
+            use_container_width=True,
         )
-
-    # -------------------------------------------------
-    # FOOTER
-    # -------------------------------------------------
 
     st.markdown(
         """
         <div class="footer">
             🌌 Creative Universe · Built with Python and Streamlit
             <br><br>
-            Create something wonderful today.
+            Dashboard collaboration: Purnima Kushwaha &amp; Kritika
+            <br>
+            AI Drawing Studio by Purnima · MoodSpark by Kritika
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
 # =====================================================
 # AI DRAWING STUDIO PAGE
 # =====================================================
-
 elif st.session_state.page == "AI Drawing Studio":
 
     st.markdown(
@@ -431,38 +421,30 @@ elif st.session_state.page == "AI Drawing Studio":
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
-    st.markdown(
-        """
-        <div class="info-box">
-            <strong>Your creative workspace is ready!</strong>
-            <br>
-            Open AI Drawing Studio in this browser tab.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    launch_link(
+    components.iframe(
         DRAWING_URL,
-        "🚀 Launch AI Drawing Studio"
+        height=780,
+        scrolling=True,
     )
 
-    if st.button(
-        "🏠 Back to Home",
-        key="drawing_back",
-        use_container_width=True
-    ):
-        navigate_to("Home")
-        st.rerun()
+    st.warning(
+        "If the app panel is blank or shows a security error, "
+        "its hosting settings may prevent embedding."
+    )
+
+    st.link_button(
+        "Open AI Drawing Studio directly ↗",
+        DRAWING_URL,
+        use_container_width=True,
+    )
 
 
 # =====================================================
 # MOODSPARK PAGE
 # =====================================================
-
 elif st.session_state.page == "MoodSpark":
 
     st.markdown(
@@ -476,29 +458,22 @@ elif st.session_state.page == "MoodSpark":
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
-    st.markdown(
-        """
-        <div class="info-box">
-            <strong>Welcome to MoodSpark!</strong>
-            <br>
-            Open MoodSpark in this browser tab.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    launch_link(
+    components.iframe(
         MOODSPARK_URL,
-        "✨ Launch MoodSpark"
+        height=780,
+        scrolling=True,
     )
 
-    if st.button(
-        "🏠 Back to Home",
-        key="moodspark_back",
-        use_container_width=True
-    ):
-        navigate_to("Home")
-        st.rerun()
+    st.warning(
+        "If the app panel is blank or shows a security error, "
+        "its hosting settings may prevent embedding."
+    )
+
+    st.link_button(
+        "Open MoodSpark directly ↗",
+        MOODSPARK_URL,
+        use_container_width=True,
+    )
