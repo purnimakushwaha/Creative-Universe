@@ -1,9 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# --------------------------------------------------
+# ==================================================
 # PAGE CONFIGURATION
-# --------------------------------------------------
+# ==================================================
 
 st.set_page_config(
     page_title="Creative Universe",
@@ -12,24 +12,24 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --------------------------------------------------
+# ==================================================
 # APP LINKS
-# --------------------------------------------------
+# ==================================================
 
 DRAWING_URL = "https://ai-drawing-studio.streamlit.app/"
 MOODSPARK_URL = "https://moodspark-pe81.onrender.com/"
 
-# --------------------------------------------------
+# ==================================================
 # SESSION STATE
-# --------------------------------------------------
+# ==================================================
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 
-# --------------------------------------------------
-# MAIN BACKGROUND AND GLOBAL CSS
-# --------------------------------------------------
+# ==================================================
+# GLOBAL CSS
+# ==================================================
 
 st.markdown(
     """
@@ -39,23 +39,23 @@ st.markdown(
         'https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap'
     );
 
-    /* Main application background */
+    /* MAIN BACKGROUND */
 
     .stApp {
         background:
             radial-gradient(
                 circle at 10% 10%,
-                rgba(151, 71, 255, 0.32),
+                rgba(151,71,255,0.32),
                 transparent 35%
             ),
             radial-gradient(
                 circle at 90% 20%,
-                rgba(0, 217, 255, 0.20),
+                rgba(0,217,255,0.20),
                 transparent 35%
             ),
             radial-gradient(
                 circle at 50% 90%,
-                rgba(255, 48, 173, 0.22),
+                rgba(255,48,173,0.22),
                 transparent 40%
             ),
             linear-gradient(
@@ -69,13 +69,9 @@ st.markdown(
         font-family: 'Poppins', sans-serif;
     }
 
-    /* Hide Streamlit header */
-
     header[data-testid="stHeader"] {
         background: transparent;
     }
-
-    /* Main content */
 
     .block-container {
         padding-top: 2rem;
@@ -83,7 +79,7 @@ st.markdown(
         max-width: 1250px;
     }
 
-    /* Sidebar */
+    /* SIDEBAR */
 
     section[data-testid="stSidebar"] {
         background: linear-gradient(
@@ -96,20 +92,19 @@ st.markdown(
         border-right: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Headings */
+    /* HEADINGS */
 
     h1, h2, h3 {
-        font-family: 'Orbitron', sans-serif !important;
         color: white !important;
+        font-family: 'Orbitron', sans-serif !important;
     }
 
-    /* Main title */
+    /* MAIN TITLE */
 
     .main-title {
         text-align: center;
         font-family: 'Orbitron', sans-serif;
-
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        font-size: clamp(2rem, 5vw, 4.2rem);
         font-weight: 900;
         letter-spacing: 3px;
 
@@ -128,12 +123,12 @@ st.markdown(
 
         animation: gradientMove 6s ease infinite;
 
-        margin-bottom: 0.5rem;
+        margin-bottom: 10px;
     }
 
     @keyframes gradientMove {
-        0%   { background-position: 0% 50%; }
-        50%  { background-position: 100% 50%; }
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
@@ -141,10 +136,47 @@ st.markdown(
         text-align: center;
         color: #d4d1ff;
         font-size: 1.05rem;
-        margin-bottom: 2rem;
+        margin-bottom: 30px;
     }
 
-    /* Glass cards */
+    /* WELCOME CARD */
+
+    .welcome-card {
+        text-align: center;
+        padding: 25px;
+        margin-bottom: 30px;
+
+        border-radius: 20px;
+
+        background: rgba(255,255,255,0.045);
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .welcome-title {
+        font-size: 1.3rem;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .welcome-description {
+        color: #c5bee8;
+        line-height: 1.8;
+        max-width: 750px;
+        margin: 12px auto 0 auto;
+    }
+
+    /* SECTION TITLES */
+
+    .section-title {
+        text-align: center;
+        color: white;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        margin-top: 35px;
+        margin-bottom: 25px;
+    }
+
+    /* APPLICATION CARDS */
 
     .glass-card {
         background: rgba(255,255,255,0.065);
@@ -152,39 +184,34 @@ st.markdown(
         border: 1px solid rgba(255,255,255,0.16);
         border-radius: 22px;
 
-        padding: 22px;
+        padding: 24px;
 
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        min-height: 215px;
 
         box-shadow: 0 10px 35px rgba(0,0,0,0.25);
 
         transition: transform 0.3s ease,
                     border-color 0.3s ease,
                     box-shadow 0.3s ease;
-
-        min-height: 190px;
     }
 
     .glass-card:hover {
         transform: translateY(-6px);
 
-        border-color: rgba(133, 116, 255, 0.8);
+        border-color: rgba(133,116,255,0.8);
 
-        box-shadow:
-            0 0 25px rgba(132, 88, 255, 0.22),
-            0 12px 35px rgba(0,0,0,0.3);
+        box-shadow: 0 0 25px rgba(132,88,255,0.22);
     }
 
     .card-icon {
         font-size: 2.7rem;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 
     .card-title {
         color: white;
         font-family: 'Orbitron', sans-serif;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         font-weight: 700;
         margin-bottom: 12px;
     }
@@ -192,21 +219,39 @@ st.markdown(
     .card-description {
         color: #d6d2f5;
         font-size: 0.94rem;
-        line-height: 1.7;
+        line-height: 1.8;
     }
 
-    /* Section headings */
+    /* TEAM CARDS */
 
-    .section-title {
+    .credit-card {
         text-align: center;
-        color: #ffffff;
-        font-size: 1.65rem;
-        font-family: 'Orbitron', sans-serif;
-        margin-top: 2.5rem;
-        margin-bottom: 1.5rem;
+        padding: 25px 15px;
+
+        border-radius: 18px;
+
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.13);
     }
 
-    /* Buttons */
+    .credit-icon {
+        font-size: 2.5rem;
+    }
+
+    .credit-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 10px;
+    }
+
+    .credit-role {
+        color: #c9c2f4;
+        font-size: 0.9rem;
+        margin-top: 6px;
+    }
+
+    /* BUTTONS */
 
     div.stButton > button,
     div.stLinkButton > a {
@@ -227,7 +272,6 @@ st.markdown(
         font-weight: 600 !important;
 
         transition: all 0.25s ease !important;
-
         text-decoration: none !important;
     }
 
@@ -235,59 +279,24 @@ st.markdown(
     div.stLinkButton > a:hover {
         transform: translateY(-2px);
 
-        box-shadow:
-            0 0 18px rgba(174, 82, 255, 0.55);
+        box-shadow: 0 0 18px rgba(174,82,255,0.55);
 
-        border-color: #ffffff !important;
+        border-color: white !important;
     }
 
-    /* Team credits */
-
-    .credit-card {
-        text-align: center;
-
-        padding: 22px 15px;
-
-        border-radius: 18px;
-
-        background: rgba(255,255,255,0.06);
-
-        border: 1px solid rgba(255,255,255,0.13);
-    }
-
-    .credit-name {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #ffffff;
-    }
-
-    .credit-role {
-        color: #c9c2f4;
-        font-size: 0.9rem;
-        margin-top: 6px;
-    }
-
-    /* Divider */
-
-    hr {
-        border-color: rgba(255,255,255,0.15) !important;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    /* Footer */
+    /* FOOTER */
 
     .footer {
         text-align: center;
         color: #a9a2d6;
-        padding-top: 2rem;
+        padding-top: 30px;
         font-size: 0.85rem;
     }
 
-    /* Streamlit form elements */
-
-    [data-testid="stAlert"] {
-        border-radius: 12px;
+    hr {
+        border-color: rgba(255,255,255,0.15) !important;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     </style>
@@ -296,11 +305,22 @@ st.markdown(
 )
 
 
-# --------------------------------------------------
-# ANIMATED LOADING SCREEN WITH WAVES
-# --------------------------------------------------
+# ==================================================
+# LOADING SCREEN WITH COLOURFUL WAVES
+# ==================================================
 
 def show_app_with_loader(app_name, app_url):
+
+    # HTML iframe ke andar animation aur actual app dono hain.
+    # App load hone par loader fade out hota hai.
+
+    safe_name = (
+        app_name
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
 
     components.html(
         f"""
@@ -319,45 +339,27 @@ def show_app_with_loader(app_name, app_url):
         body {{
             margin: 0;
             padding: 0;
-
             font-family: Arial, sans-serif;
-
             background: #08051c;
-            color: white;
         }}
 
         .app-container {{
             position: relative;
-
             width: 100%;
-            height: 780px;
-
+            height: 760px;
             overflow: hidden;
 
-            background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(151, 71, 255, 0.3),
-                    transparent 40%
-                ),
-                linear-gradient(
-                    135deg,
-                    #08051c,
-                    #110b32,
-                    #08051c
-                );
+            background: #08051c;
 
             border-radius: 18px;
-
             border: 1px solid rgba(255,255,255,0.15);
         }}
 
-        /* Loading overlay */
+        /* LOADER OVERLAY */
 
         .loader {{
             position: absolute;
             inset: 0;
-
             z-index: 10;
 
             display: flex;
@@ -371,7 +373,7 @@ def show_app_with_loader(app_name, app_url):
             background:
                 radial-gradient(
                     circle at 50% 45%,
-                    rgba(94, 45, 170, 0.45),
+                    rgba(94,45,170,0.45),
                     transparent 55%
                 ),
                 #08051c;
@@ -388,11 +390,9 @@ def show_app_with_loader(app_name, app_url):
             position: relative;
             z-index: 5;
 
-            font-size: clamp(23px, 4vw, 36px);
-
+            font-size: clamp(22px,4vw,36px);
             font-weight: 800;
             letter-spacing: 2px;
-
             text-align: center;
 
             background: linear-gradient(
@@ -411,15 +411,13 @@ def show_app_with_loader(app_name, app_url):
             z-index: 5;
 
             color: #ded9ff;
-
             font-size: 14px;
 
             margin-top: 16px;
-
             text-align: center;
         }}
 
-        /* Wave layers */
+        /* COLOURFUL WAVES */
 
         .wave {{
             position: absolute;
@@ -428,18 +426,15 @@ def show_app_with_loader(app_name, app_url):
             height: 260px;
 
             left: -40%;
-
             border-radius: 43%;
-
-            opacity: 0.48;
 
             filter: blur(2px);
 
-            animation: waveMove 7s linear infinite;
+            animation: waveMove 8s linear infinite;
         }}
 
         .wave-one {{
-            bottom: -90px;
+            bottom: -100px;
 
             background: linear-gradient(
                 90deg,
@@ -447,10 +442,12 @@ def show_app_with_loader(app_name, app_url):
                 #ed3ca8,
                 #584cff
             );
+
+            opacity: 0.65;
         }}
 
         .wave-two {{
-            bottom: -125px;
+            bottom: -130px;
 
             background: linear-gradient(
                 90deg,
@@ -459,14 +456,14 @@ def show_app_with_loader(app_name, app_url):
                 #ff4fc8
             );
 
-            opacity: 0.4;
+            opacity: 0.5;
 
-            animation-duration: 10s;
+            animation-duration: 11s;
             animation-direction: reverse;
         }}
 
         .wave-three {{
-            bottom: -160px;
+            bottom: -165px;
 
             background: linear-gradient(
                 90deg,
@@ -475,9 +472,9 @@ def show_app_with_loader(app_name, app_url):
                 #a34dff
             );
 
-            opacity: 0.4;
+            opacity: 0.45;
 
-            animation-duration: 13s;
+            animation-duration: 14s;
         }}
 
         @keyframes waveMove {{
@@ -494,7 +491,7 @@ def show_app_with_loader(app_name, app_url):
             }}
         }}
 
-        /* Floating particles */
+        /* FLOATING PARTICLES */
 
         .particle {{
             position: absolute;
@@ -504,7 +501,7 @@ def show_app_with_loader(app_name, app_url):
 
             border-radius: 50%;
 
-            background: #ffffff;
+            background: white;
 
             box-shadow:
                 0 0 10px #8e72ff,
@@ -533,7 +530,7 @@ def show_app_with_loader(app_name, app_url):
             }}
         }}
 
-        /* Spinner */
+        /* SPINNER */
 
         .spinner {{
             position: relative;
@@ -560,33 +557,13 @@ def show_app_with_loader(app_name, app_url):
             }}
         }}
 
-        /* App iframe */
+        /* EMBEDDED APPLICATION */
 
         .app-frame {{
             width: 100%;
             height: 100%;
-
             border: none;
-
             background: #08051c;
-        }}
-
-        .fallback {{
-            position: relative;
-            z-index: 20;
-
-            margin-top: 8px;
-
-            text-align: center;
-
-            font-size: 13px;
-            color: #d5ceff;
-        }}
-
-        .fallback a {{
-            color: #68eaff;
-            font-weight: bold;
-            text-decoration: none;
         }}
 
         </style>
@@ -596,12 +573,10 @@ def show_app_with_loader(app_name, app_url):
 
         <div class="app-container">
 
-            <!-- Animated loading screen -->
-
             <div class="loader" id="loader">
 
                 <div class="loader-title">
-                    ✨ Entering {app_name} ✨
+                    ✨ Entering {safe_name} ✨
                 </div>
 
                 <div class="loader-subtitle" id="status">
@@ -631,24 +606,15 @@ def show_app_with_loader(app_name, app_url):
 
             </div>
 
-            <!-- Actual application -->
-
             <iframe
                 class="app-frame"
                 id="appFrame"
                 src="{app_url}"
-                title="{app_name}"
+                title="{safe_name}"
                 allow="clipboard-read; clipboard-write"
                 onload="hideLoader()">
             </iframe>
 
-        </div>
-
-        <div class="fallback">
-            App not appearing?
-            <a href="{app_url}" target="_blank" rel="noopener">
-                Open {app_name} in a new tab ↗
-            </a>
         </div>
 
         <script>
@@ -668,8 +634,6 @@ def show_app_with_loader(app_name, app_url):
             }}
 
         }}
-
-        // Update loading messages
 
         const messages = [
             "Creating your creative space...",
@@ -700,14 +664,33 @@ def show_app_with_loader(app_name, app_url):
         </body>
         </html>
         """,
-        height=810,
+        height=780,
         scrolling=False
     )
 
+    st.markdown(
+        f"""
+        <div style="
+            text-align:center;
+            color:#c9c2f4;
+            font-size:0.9rem;
+            padding:10px;">
+            App not appearing?
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-# --------------------------------------------------
+    st.link_button(
+        f"↗ Open {app_name} in a New Tab",
+        app_url,
+        use_container_width=True
+    )
+
+
+# ==================================================
 # SIDEBAR
-# --------------------------------------------------
+# ==================================================
 
 with st.sidebar:
 
@@ -721,8 +704,7 @@ with st.sidebar:
                 font-family:Orbitron,sans-serif;
                 font-size:1.4rem;
                 font-weight:800;
-                color:white;
-            ">
+                color:white;">
                 CREATIVE
             </div>
 
@@ -730,8 +712,7 @@ with st.sidebar:
                 font-family:Orbitron,sans-serif;
                 font-size:1.4rem;
                 font-weight:800;
-                color:#b99aff;
-            ">
+                color:#b99aff;">
                 UNIVERSE
             </div>
 
@@ -745,7 +726,6 @@ with st.sidebar:
     )
 
     st.markdown("---")
-
     st.markdown("### 🧭 Navigation")
 
     if st.button("🏠 Home", use_container_width=True):
@@ -761,7 +741,6 @@ with st.sidebar:
         st.rerun()
 
     st.markdown("---")
-
     st.markdown("### 👩‍💻 Our Team")
 
     st.markdown(
@@ -771,28 +750,32 @@ with st.sidebar:
             border:1px solid rgba(255,255,255,0.12);
             padding:14px;
             border-radius:14px;
-            margin-bottom:12px;
-        ">
+            margin-bottom:12px;">
+
             <div style="color:#e5d8ff;font-weight:700;">
                 Purnima Kushwaha
             </div>
+
             <div style="color:#bcb4e7;font-size:0.82rem;">
                 Creator — AI Drawing Studio
             </div>
+
         </div>
 
         <div style="
             background:rgba(255,255,255,0.06);
             border:1px solid rgba(255,255,255,0.12);
             padding:14px;
-            border-radius:14px;
-        ">
+            border-radius:14px;">
+
             <div style="color:#e5d8ff;font-weight:700;">
                 Kritika
             </div>
+
             <div style="color:#bcb4e7;font-size:0.82rem;">
                 Creator — MoodSpark
             </div>
+
         </div>
         """,
         unsafe_allow_html=True
@@ -805,8 +788,7 @@ with st.sidebar:
         <div style="
             text-align:center;
             color:#a9a2d6;
-            font-size:0.8rem;
-        ">
+            font-size:0.8rem;">
             Made with 💜 and imagination
         </div>
         """,
@@ -814,9 +796,9 @@ with st.sidebar:
     )
 
 
-# --------------------------------------------------
+# ==================================================
 # HOME PAGE
-# --------------------------------------------------
+# ==================================================
 
 if st.session_state.page == "Home":
 
@@ -835,29 +817,18 @@ if st.session_state.page == "Home":
 
     st.markdown(
         """
-        <div style="
-            text-align:center;
-            padding:22px;
-            margin-bottom:30px;
-            border-radius:20px;
+        <div class="welcome-card">
 
-            background:rgba(255,255,255,0.045);
-            border:1px solid rgba(255,255,255,0.12);
-        ">
-            <div style="font-size:1.2rem;color:#e8e2ff;">
+            <div class="welcome-title">
                 Welcome to your creative universe!
             </div>
 
-            <p style="
-                color:#c5bee8;
-                line-height:1.8;
-                max-width:750px;
-                margin:12px auto 0 auto;
-            ">
+            <div class="welcome-description">
                 A place where imagination meets technology.
                 Create beautiful AI-generated artwork and explore
                 a world of moods, ideas and inspiration.
-            </p>
+            </div>
+
         </div>
         """,
         unsafe_allow_html=True
@@ -868,9 +839,9 @@ if st.session_state.page == "Home":
         unsafe_allow_html=True
     )
 
-    # Application cards
-
     col1, col2 = st.columns(2, gap="large")
+
+    # AI DRAWING STUDIO CARD
 
     with col1:
 
@@ -905,6 +876,8 @@ if st.session_state.page == "Home":
             st.session_state.page = "AI Drawing Studio"
             st.rerun()
 
+    # MOODSPARK CARD
+
     with col2:
 
         st.markdown(
@@ -938,7 +911,7 @@ if st.session_state.page == "Home":
             st.session_state.page = "MoodSpark"
             st.rerun()
 
-    # Team section
+    # TEAM SECTION
 
     st.markdown("---")
 
@@ -955,7 +928,7 @@ if st.session_state.page == "Home":
             """
             <div class="credit-card">
 
-                <div style="font-size:2.5rem;">👩‍🎨</div>
+                <div class="credit-icon">👩‍🎨</div>
 
                 <div class="credit-name">
                     Purnima Kushwaha
@@ -976,7 +949,7 @@ if st.session_state.page == "Home":
             """
             <div class="credit-card">
 
-                <div style="font-size:2.5rem;">👩‍💻</div>
+                <div class="credit-icon">👩‍💻</div>
 
                 <div class="credit-name">
                     Kritika
@@ -1001,9 +974,9 @@ if st.session_state.page == "Home":
     )
 
 
-# --------------------------------------------------
+# ==================================================
 # AI DRAWING STUDIO PAGE
-# --------------------------------------------------
+# ==================================================
 
 elif st.session_state.page == "AI Drawing Studio":
 
@@ -1031,18 +1004,10 @@ elif st.session_state.page == "AI Drawing Studio":
         DRAWING_URL
     )
 
-    st.markdown("<br>", unsafe_allow_html=True)
 
-    st.link_button(
-        "↗ Open AI Drawing Studio Directly",
-        DRAWING_URL,
-        use_container_width=True
-    )
-
-
-# --------------------------------------------------
+# ==================================================
 # MOODSPARK PAGE
-# --------------------------------------------------
+# ==================================================
 
 elif st.session_state.page == "MoodSpark":
 
@@ -1068,12 +1033,4 @@ elif st.session_state.page == "MoodSpark":
     show_app_with_loader(
         "MoodSpark",
         MOODSPARK_URL
-    )
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    st.link_button(
-        "↗ Open MoodSpark Directly",
-        MOODSPARK_URL,
-        use_container_width=True
     )
