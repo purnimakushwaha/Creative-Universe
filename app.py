@@ -1,10 +1,6 @@
 ```python
 import streamlit as st
 
-# ==========================================
-# PAGE CONFIGURATION
-# ==========================================
-
 st.set_page_config(
     page_title="Creative Universe",
     page_icon="🌌",
@@ -18,7 +14,6 @@ st.set_page_config(
 
 DRAWING_URL = "https://ai-drawing-studio.streamlit.app/?embed=true"
 DRAWING_DIRECT_URL = "https://ai-drawing-studio.streamlit.app/"
-
 MOODSPARK_URL = "https://moodspark-pe81.onrender.com/"
 
 # ==========================================
@@ -39,37 +34,23 @@ def navigate_to(page):
 
 st.markdown("""
 <style>
-
-/* ---------- GLOBAL ---------- */
-
 .stApp {
     background:
-        radial-gradient(
-            ellipse at top left,
-            rgba(110, 75, 210, 0.20),
-            transparent 42%
-        ),
-        radial-gradient(
-            ellipse at bottom right,
-            rgba(36, 145, 190, 0.14),
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #0b1020 0%,
-            #14142d 52%,
-            #101c32 100%
-        );
-
+        radial-gradient(ellipse at top left,
+            rgba(110, 75, 210, 0.20), transparent 42%),
+        radial-gradient(ellipse at bottom right,
+            rgba(36, 145, 190, 0.14), transparent 40%),
+        linear-gradient(135deg, #0b1020, #14142d, #101c32);
     color: #f5f3ff;
 }
 
 [data-testid="stHeader"] {
-    background: rgba(11, 16, 32, 0.4);
+    background: transparent;
 }
 
-[data-testid="stMain"] {
-    color: #f5f3ff;
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #111329, #171630);
+    border-right: 1px solid rgba(190, 175, 255, 0.12);
 }
 
 .block-container {
@@ -77,8 +58,6 @@ st.markdown("""
     padding-top: 2rem;
     padding-bottom: 3rem;
 }
-
-/* ---------- TYPOGRAPHY ---------- */
 
 h1, h2, h3, h4 {
     color: #ffffff !important;
@@ -94,110 +73,46 @@ p {
     color: #aaa8ce;
 }
 
-/* ---------- SIDEBAR ---------- */
-
-[data-testid="stSidebar"] {
-    background: linear-gradient(
-        180deg,
-        #111329 0%,
-        #171630 100%
-    );
-
-    border-right: 1px solid rgba(190, 175, 255, 0.12);
-}
-
-[data-testid="stSidebar"] > div:first-child {
-    padding-top: 1.5rem;
-}
-
-[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-    color: #c5c5df;
-}
-
-/* ---------- BUTTONS ---------- */
-
 .stButton > button,
 .stLinkButton > a {
     min-height: 46px;
     border-radius: 12px;
-
     border: 1px solid rgba(174, 153, 255, 0.55);
-
-    background: linear-gradient(
-        110deg,
-        #7757e8,
-        #536ee7
-    );
-
-    color: #ffffff !important;
+    background: linear-gradient(110deg, #7757e8, #536ee7);
+    color: white !important;
     font-weight: 650;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .stButton > button:hover,
 .stLinkButton > a:hover {
     border-color: #d8ceff;
-
-    box-shadow:
-        0 6px 22px rgba(111, 85, 231, 0.24);
-
+    box-shadow: 0 6px 22px rgba(111, 85, 231, 0.24);
     transform: translateY(-2px);
-
-    color: #ffffff !important;
 }
-
-.stButton > button:focus,
-.stLinkButton > a:focus {
-    color: #ffffff !important;
-    border-color: #d8ceff;
-}
-
-/* ---------- HERO SECTION ---------- */
 
 .hero {
-    position: relative;
-    overflow: hidden;
-
     padding: 46px 38px;
-    margin: 8px 0 30px 0;
-
+    margin: 8px 0 30px;
     border-radius: 26px;
-
     background:
-        radial-gradient(
-            circle at 85% 15%,
-            rgba(143, 111, 255, 0.30),
-            transparent 35%
-        ),
-        linear-gradient(
-            120deg,
+        radial-gradient(circle at 85% 15%,
+            rgba(143, 111, 255, 0.30), transparent 35%),
+        linear-gradient(120deg,
             rgba(65, 52, 133, 0.70),
-            rgba(29, 50, 91, 0.80)
-        );
-
+            rgba(29, 50, 91, 0.80));
     border: 1px solid rgba(190, 175, 255, 0.25);
-
-    box-shadow:
-        0 18px 50px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
 }
 
 .hero-label {
     display: inline-block;
-
     padding: 7px 12px;
     margin-bottom: 18px;
-
     border-radius: 30px;
-
     background: rgba(255, 255, 255, 0.09);
     border: 1px solid rgba(255, 255, 255, 0.15);
-
     color: #ded5ff;
-
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -207,178 +122,115 @@ p {
     font-size: clamp(2.1rem, 5vw, 3.5rem);
     font-weight: 850;
     line-height: 1.15;
-
-    color: #ffffff;
+    color: white;
     margin-bottom: 16px;
 }
 
 .hero-description {
     max-width: 680px;
-
     font-size: 1.05rem;
     line-height: 1.8;
-
     color: #dedff4;
 }
 
-.hero-symbol {
-    font-size: 5rem;
-    text-align: center;
-    padding: 15px;
+.section-label {
+    color: #b4a4ff;
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
 }
 
-/* ---------- APP CARDS ---------- */
-
 .app-card {
-    height: 100%;
-    min-height: 255px;
-
+    min-height: 270px;
     padding: 27px;
-
     border-radius: 21px;
-
     background: linear-gradient(
         145deg,
         rgba(255, 255, 255, 0.075),
         rgba(255, 255, 255, 0.025)
     );
-
     border: 1px solid rgba(205, 195, 255, 0.17);
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .app-card:hover {
     transform: translateY(-4px);
-
     border-color: rgba(176, 156, 255, 0.55);
-
-    background: linear-gradient(
-        145deg,
-        rgba(130, 104, 224, 0.13),
-        rgba(255, 255, 255, 0.035)
-    );
+    background: rgba(130, 104, 224, 0.10);
 }
 
 .app-icon {
     width: 66px;
     height: 66px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-bottom: 20px;
-
     border-radius: 19px;
-
     font-size: 2.1rem;
-
     background: rgba(141, 117, 255, 0.13);
     border: 1px solid rgba(190, 175, 255, 0.19);
 }
 
 .app-name {
-    color: #ffffff;
-
+    color: white;
     font-size: 1.35rem;
     font-weight: 750;
-
     margin-bottom: 10px;
 }
 
 .app-description {
     color: #c4c8e0;
-
     font-size: 0.96rem;
     line-height: 1.8;
-
     min-height: 75px;
 }
 
 .app-tag {
     display: inline-block;
-
     padding: 5px 10px;
     margin-top: 12px;
-
     border-radius: 20px;
-
     background: rgba(121, 93, 231, 0.15);
-
     color: #d6caff;
-
     font-size: 0.76rem;
     font-weight: 600;
 }
 
-/* ---------- SECTION HEADINGS ---------- */
-
-.section-label {
-    color: #b4a4ff;
-
-    font-size: 0.78rem;
-    font-weight: 750;
-
-    letter-spacing: 2px;
-    text-transform: uppercase;
-
-    margin-bottom: 8px;
-}
-
-/* ---------- INFO PANELS ---------- */
-
 .info-panel {
     padding: 23px;
-
     border-radius: 17px;
-
     background: rgba(255, 255, 255, 0.045);
-
     border: 1px solid rgba(200, 190, 255, 0.12);
+    min-height: 150px;
 }
 
 .info-title {
-    color: #ffffff;
-
+    color: white;
     font-size: 1.05rem;
     font-weight: 700;
-
     margin-bottom: 8px;
 }
 
 .info-description {
     color: #bfc4dd;
-
     font-size: 0.92rem;
     line-height: 1.75;
 }
 
-/* ---------- FOOTER ---------- */
-
 .footer {
     margin-top: 48px;
-    padding: 24px 10px 5px 10px;
-
+    padding: 24px 10px 5px;
     text-align: center;
-
     border-top: 1px solid rgba(255, 255, 255, 0.12);
-
     color: #a7aac5;
-
     font-size: 0.87rem;
 }
-
-/* ---------- DIVIDERS ---------- */
 
 hr {
     border-color: rgba(255, 255, 255, 0.11);
 }
-
-/* ---------- IFRAME ---------- */
 
 [data-testid="stIFrame"] {
     border-radius: 16px;
@@ -386,29 +238,19 @@ hr {
     border: 1px solid rgba(190, 175, 255, 0.18);
 }
 
-/* ---------- RESPONSIVE ---------- */
-
 @media (max-width: 768px) {
-
     .block-container {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding: 1rem;
     }
 
     .hero {
         padding: 30px 23px;
     }
 
-    .hero-symbol {
-        font-size: 3.5rem;
-    }
-
     .app-card {
         padding: 21px;
     }
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -419,35 +261,25 @@ hr {
 
 def render_footer():
     st.markdown("""
-        <div class="footer">
-            <div style="font-size: 1.1rem; margin-bottom: 8px;">
-                🌌 <strong>Creative Universe</strong>
-            </div>
-
-            Create something meaningful. Explore something new.
-
-            <br><br>
-
-            © Creative Universe · Keep imagining. Keep creating.
+    <div class="footer">
+        <div style="font-size: 1.1rem; margin-bottom: 8px;">
+            🌌 <strong>Creative Universe</strong>
         </div>
+        Create something meaningful. Explore something new.
+        <br><br>
+        © Creative Universe · Keep imagining. Keep creating.
+    </div>
     """, unsafe_allow_html=True)
 
 
 def render_app_card(icon, title, description, tag):
     st.markdown(f"""
-        <div class="app-card">
-
-            <div class="app-icon">{icon}</div>
-
-            <div class="app-name">{title}</div>
-
-            <div class="app-description">
-                {description}
-            </div>
-
-            <div class="app-tag">{tag}</div>
-
-        </div>
+    <div class="app-card">
+        <div class="app-icon">{icon}</div>
+        <div class="app-name">{title}</div>
+        <div class="app-description">{description}</div>
+        <div class="app-tag">{tag}</div>
+    </div>
     """, unsafe_allow_html=True)
 
 
@@ -461,20 +293,18 @@ def render_external_app(title, description, url, embed_url=None):
     )
 
     st.caption(
-        "Tip: If the embedded application does not load, "
+        "If the embedded application does not load, "
         "use the button above to open it directly."
     )
 
     if embed_url:
         st.markdown("---")
         st.subheader("Application Preview")
-
-        with st.spinner(f"Loading {title}..."):
-            st.components.v1.iframe(
-                embed_url,
-                height=760,
-                scrolling=True
-            )
+        st.components.v1.iframe(
+            embed_url,
+            height=780,
+            scrolling=True
+        )
 
 
 # ==========================================
@@ -482,34 +312,24 @@ def render_external_app(title, description, url, embed_url=None):
 # ==========================================
 
 with st.sidebar:
-
     st.markdown("""
-        <div style="padding: 8px 0 18px 0;">
-
-            <div style="font-size: 2.4rem;">🌌</div>
-
-            <div style="
-                font-size: 1.25rem;
-                font-weight: 800;
-                color: white;
-                margin-top: 5px;
-            ">
-                Creative Universe
-            </div>
-
-            <div style="
-                font-size: 0.82rem;
-                color: #aaa8ce;
-                margin-top: 6px;
-            ">
-                Create · Explore · Discover
-            </div>
-
-        </div>
+    <div style="padding: 8px 0 18px;">
+        <div style="font-size: 2.4rem;">🌌</div>
+        <div style="
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: white;
+            margin-top: 5px;
+        ">Creative Universe</div>
+        <div style="
+            font-size: 0.82rem;
+            color: #aaa8ce;
+            margin-top: 6px;
+        ">Create · Explore · Discover</div>
+    </div>
     """, unsafe_allow_html=True)
 
     st.divider()
-
     st.caption("NAVIGATION")
 
     pages = {
@@ -519,14 +339,10 @@ with st.sidebar:
     }
 
     for label, page_name in pages.items():
-
-        is_active = st.session_state.page == page_name
-
-        button_label = (
-            f"●  {label}"
-            if is_active
-            else label
-        )
+        if st.session_state.page == page_name:
+            button_label = f"● {label}"
+        else:
+            button_label = label
 
         if st.button(
             button_label,
@@ -537,7 +353,6 @@ with st.sidebar:
             st.rerun()
 
     st.divider()
-
     st.markdown("### ✨ Your Creative Space")
 
     st.caption(
@@ -546,12 +361,9 @@ with st.sidebar:
     )
 
     st.markdown("---")
-
     st.caption("PROJECTS")
-
     st.markdown("🎨 **AI Drawing Studio**")
     st.caption("Creative exploration")
-
     st.markdown("🌈 **MoodSpark**")
     st.caption("Mood and reflection")
 
@@ -562,57 +374,42 @@ with st.sidebar:
 
 if st.session_state.page == "Home":
 
-    # HERO
     st.markdown("""
-        <div class="hero">
-
-            <div class="hero-label">
-                ✦ YOUR SPACE TO CREATE AND EXPLORE
-            </div>
-
-            <div class="hero-title">
-                Welcome to Your<br>
-                Creative Universe.
-            </div>
-
-            <div class="hero-description">
-                A place where imagination meets expression.
-                Explore creative tools, discover new perspectives,
-                and turn your ideas into experiences.
-            </div>
-
+    <div class="hero">
+        <div class="hero-label">
+            ✦ YOUR SPACE TO CREATE AND EXPLORE
         </div>
+        <div class="hero-title">
+            Welcome to Your<br>
+            Creative Universe.
+        </div>
+        <div class="hero-description">
+            A place where imagination meets expression.
+            Explore creative tools, discover new perspectives,
+            and turn your ideas into experiences.
+        </div>
+    </div>
     """, unsafe_allow_html=True)
 
-    # SECTION HEADING
     st.markdown("""
-        <div class="section-label">
-            EXPLORE
-        </div>
-
-        <h2 style="margin-top: 0;">
-            Discover Your Next Experience
-        </h2>
-
-        <p style="margin-bottom: 25px;">
-            Choose an application and begin your journey.
-        </p>
+    <div class="section-label">EXPLORE</div>
+    <h2 style="margin-top: 0;">
+        Discover Your Next Experience
+    </h2>
+    <p style="margin-bottom: 25px;">
+        Choose an application and begin your journey.
+    </p>
     """, unsafe_allow_html=True)
 
-    # APP CARDS
     col1, col2 = st.columns(2, gap="large")
 
     with col1:
-
         render_app_card(
-            icon="🎨",
-            title="AI Drawing Studio",
-            description=(
-                "Bring your imagination to life. "
-                "Explore artistic ideas and enjoy a creative "
-                "space for visual expression."
-            ),
-            tag="ART · CREATIVITY"
+            "🎨",
+            "AI Drawing Studio",
+            "Bring your imagination to life. Explore artistic "
+            "ideas and enjoy a creative space for visual expression.",
+            "ART · CREATIVITY"
         )
 
         if st.button(
@@ -624,16 +421,12 @@ if st.session_state.page == "Home":
             st.rerun()
 
     with col2:
-
         render_app_card(
-            icon="🌈",
-            title="MoodSpark",
-            description=(
-                "Take a moment to explore your mood, "
-                "reflect on your feelings, and create "
-                "space for a more mindful experience."
-            ),
-            tag="MOOD · REFLECTION"
+            "🌈",
+            "MoodSpark",
+            "Take a moment to explore your mood, reflect on "
+            "your feelings, and create a mindful experience.",
+            "MOOD · REFLECTION"
         )
 
         if st.button(
@@ -645,133 +438,84 @@ if st.session_state.page == "Home":
             st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
-
     st.divider()
 
-    # ABOUT
     st.markdown("""
-        <div class="section-label">
-            ABOUT THE PROJECT
-        </div>
-
-        <h2>More Than a Dashboard</h2>
-
-        <p>
-            Creative Universe brings two independent applications
-            together in one convenient space. Each project has its
-            own purpose, experience, and creative possibilities.
-        </p>
+    <div class="section-label">ABOUT THE PROJECT</div>
+    <h2>More Than a Dashboard</h2>
+    <p>
+        Creative Universe brings two independent applications
+        together in one convenient space. Each project has its
+        own purpose, experience, and creative possibilities.
+    </p>
     """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # THREE STEPS
     step1, step2, step3 = st.columns(3, gap="medium")
 
     with step1:
-
         st.markdown("""
-            <div class="info-panel">
-
-                <div style="font-size: 1.8rem;">🌌</div>
-
-                <div class="info-title">
-                    01 · Explore
-                </div>
-
-                <div class="info-description">
-                    Discover the tools and experiences
-                    available in your universe.
-                </div>
-
+        <div class="info-panel">
+            <div style="font-size: 1.8rem;">🌌</div>
+            <div class="info-title">01 · Explore</div>
+            <div class="info-description">
+                Discover the tools and experiences available.
             </div>
+        </div>
         """, unsafe_allow_html=True)
 
     with step2:
-
         st.markdown("""
-            <div class="info-panel">
-
-                <div style="font-size: 1.8rem;">🎨</div>
-
-                <div class="info-title">
-                    02 · Create
-                </div>
-
-                <div class="info-description">
-                    Express your ideas and experiment
-                    with creative possibilities.
-                </div>
-
+        <div class="info-panel">
+            <div style="font-size: 1.8rem;">🎨</div>
+            <div class="info-title">02 · Create</div>
+            <div class="info-description">
+                Express your ideas and experiment creatively.
             </div>
+        </div>
         """, unsafe_allow_html=True)
 
     with step3:
-
         st.markdown("""
-            <div class="info-panel">
-
-                <div style="font-size: 1.8rem;">💜</div>
-
-                <div class="info-title">
-                    03 · Discover
-                </div>
-
-                <div class="info-description">
-                    Explore new perspectives and
-                    enjoy the experience at your pace.
-                </div>
-
+        <div class="info-panel">
+            <div style="font-size: 1.8rem;">💜</div>
+            <div class="info-title">03 · Discover</div>
+            <div class="info-description">
+                Explore new perspectives at your own pace.
             </div>
+        </div>
         """, unsafe_allow_html=True)
 
-    # PROJECT CREDITS
     st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown("""
-        <div class="section-label">
-            THE PEOPLE BEHIND THE PROJECT
-        </div>
-
-        <h2>Project Credits</h2>
+    <div class="section-label">THE PEOPLE BEHIND THE PROJECT</div>
+    <h2>Project Credits</h2>
     """, unsafe_allow_html=True)
 
     credit1, credit2 = st.columns(2, gap="large")
 
     with credit1:
-
         st.markdown("""
-            <div class="info-panel">
-
-                <div style="font-size: 1.8rem;">🎨</div>
-
-                <div class="info-title">
-                    AI Drawing Studio
-                </div>
-
-                <div class="info-description">
-                    Created by Purnima Kushwaha
-                </div>
-
+        <div class="info-panel">
+            <div style="font-size: 1.8rem;">🎨</div>
+            <div class="info-title">AI Drawing Studio</div>
+            <div class="info-description">
+                Created by Purnima Kushwaha
             </div>
+        </div>
         """, unsafe_allow_html=True)
 
     with credit2:
-
         st.markdown("""
-            <div class="info-panel">
-
-                <div style="font-size: 1.8rem;">🌈</div>
-
-                <div class="info-title">
-                    MoodSpark
-                </div>
-
-                <div class="info-description">
-                    Created by Kritika
-                </div>
-
+        <div class="info-panel">
+            <div style="font-size: 1.8rem;">🌈</div>
+            <div class="info-title">MoodSpark</div>
+            <div class="info-description">
+                Created by Kritika
             </div>
+        </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -785,7 +529,7 @@ if st.session_state.page == "Home":
 
 
 # ==========================================
-# AI DRAWING STUDIO PAGE
+# AI DRAWING STUDIO
 # ==========================================
 
 elif st.session_state.page == "Drawing":
@@ -800,16 +544,12 @@ elif st.session_state.page == "Drawing":
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("""
-        <div class="section-label">
-            CREATIVE EXPERIENCE
-        </div>
-
-        <h1>🎨 AI Drawing Studio</h1>
-
-        <p>
-            Give your imagination a canvas.
-            Explore your creative ideas in AI Drawing Studio.
-        </p>
+    <div class="section-label">CREATIVE EXPERIENCE</div>
+    <h1>🎨 AI Drawing Studio</h1>
+    <p>
+        Give your imagination a canvas.
+        Explore your creative ideas in AI Drawing Studio.
+    </p>
     """, unsafe_allow_html=True)
 
     st.link_button(
@@ -822,8 +562,8 @@ elif st.session_state.page == "Drawing":
 
     st.info(
         "If the preview stays blank or shows a redirect error, "
-        "open the application in a new tab using the button above. "
-        "Some deployed applications restrict iframe embedding."
+        "open the application in a new tab. Some deployed "
+        "applications restrict iframe embedding."
     )
 
     st.markdown("### Application Preview")
@@ -838,7 +578,7 @@ elif st.session_state.page == "Drawing":
 
 
 # ==========================================
-# MOODSPARK PAGE
+# MOODSPARK
 # ==========================================
 
 elif st.session_state.page == "MoodSpark":
@@ -853,17 +593,12 @@ elif st.session_state.page == "MoodSpark":
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("""
-        <div class="section-label">
-            MOOD AND REFLECTION
-        </div>
-
-        <h1>🌈 MoodSpark</h1>
-
-        <p>
-            Make space for your feelings.
-            Explore MoodSpark and discover its mood-related
-            experiences.
-        </p>
+    <div class="section-label">MOOD AND REFLECTION</div>
+    <h1>🌈 MoodSpark</h1>
+    <p>
+        Make space for your feelings.
+        Explore MoodSpark and discover its mood-related experiences.
+    </p>
     """, unsafe_allow_html=True)
 
     st.link_button(
@@ -876,8 +611,8 @@ elif st.session_state.page == "MoodSpark":
 
     st.info(
         "If MoodSpark takes time to start, the service may be "
-        "waking up or processing your request. If the preview "
-        "does not work, use the button above to open it directly."
+        "waking up. If the preview does not work, use the button "
+        "above to open it directly."
     )
 
     st.markdown("### Application Preview")
