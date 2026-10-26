@@ -216,7 +216,7 @@ if st.session_state.page == "Home":
             <div class="app-card mood-card">
                 <div class="card-icon">✨</div>
                 <div class="card-title">MoodSpark</div>
-                <div class="card-description">Explore Kritika's mood-focused experience, inspiration, and positive moments.</div>
+                <div class="card-description">Explore mood-focused experience, inspiration, and positive moments.</div>
                 <span class="feature-tag">Mood &amp; Inspiration</span><span class="feature-tag">Self-Expression</span><span class="feature-tag">Positive Vibes</span>
             </div>
             """,
