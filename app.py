@@ -1,20 +1,20 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# =========================================================
+# =====================================================
 # PAGE CONFIGURATION
-# =========================================================
+# =====================================================
 
 st.set_page_config(
-    page_title="Creative Universe | Project Portal",
-    page_icon="◈",
+    page_title="Creative Universe | Explore Beyond",
+    page_icon="✦",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# =========================================================
+# =====================================================
 # PROJECT DATA
-# =========================================================
+# =====================================================
 
 PROJECTS = {
     "AI Drawing Studio": {
@@ -22,201 +22,238 @@ PROJECTS = {
         "creator": "Purnima Kushwaha",
         "category": "ARTIFICIAL INTELLIGENCE",
         "description": (
-            "An interactive creative environment for exploring "
-            "digital drawing and AI-assisted artwork."
+            "Transform imagination into visual art. "
+            "Discover a creative environment that brings "
+            "ideas to life through AI-powered drawing."
         ),
         "icon": "🎨",
-        "number": "01"
+        "number": "01",
+        "accent": "#9B8AFB"
     },
     "MoodSpark": {
         "url": "https://moodspark-pe81.onrender.com/",
         "creator": "Kritika",
         "category": "MOOD & WELLBEING",
         "description": (
-            "An interactive experience focused on moods, emotions, "
-            "and engaging digital experiences."
+            "Discover an interactive digital experience "
+            "centred around moods, emotions, and creativity."
         ),
         "icon": "✦",
-        "number": "02"
+        "number": "02",
+        "accent": "#56D6C9"
     }
 }
 
-# =========================================================
+# =====================================================
 # SESSION STATE
-# =========================================================
+# =====================================================
 
 if "page" not in st.session_state:
-    st.session_state.page = "Overview"
+    st.session_state.page = "Home"
 
 if "preview" not in st.session_state:
     st.session_state.preview = None
 
-# =========================================================
-# PROFESSIONAL STYLING
-# =========================================================
+# =====================================================
+# CUSTOM DESIGN
+# =====================================================
 
 st.markdown(
     """
     <style>
-    /* ---------- Global layout ---------- */
+    /* =========================================
+       GLOBAL THEME
+    ========================================= */
 
     .stApp {
-        background: #F4F6FA;
-        color: #172033;
+        background: #0B1020;
+        color: #F1F5FF;
     }
 
     .block-container {
-        max-width: 1320px;
-        padding-top: 2rem;
+        max-width: 1380px;
+        padding-top: 2.2rem;
         padding-bottom: 3rem;
     }
 
-    /* ---------- Sidebar ---------- */
-
-    section[data-testid="stSidebar"] {
-        background: #111C32;
-        border-right: 1px solid #25334B;
-    }
-
-    section[data-testid="stSidebar"] * {
-        color: #E8EDF7;
-    }
-
-    section[data-testid="stSidebar"] .stButton button {
-        text-align: left;
-        background: transparent;
-        color: #E8EDF7;
-        border: 1px solid #34415A;
-        border-radius: 8px;
-        min-height: 42px;
-    }
-
-    section[data-testid="stSidebar"] .stButton button:hover {
-        background: #25334B;
-        border-color: #8AA9E8;
-        color: white;
-    }
-
-    /* ---------- Typography ---------- */
-
-    h1 {
-        color: #14213A !important;
-        font-weight: 750 !important;
-        letter-spacing: -1.2px !important;
-    }
-
-    h2, h3 {
-        color: #1C2D49 !important;
-        font-weight: 650 !important;
-        letter-spacing: -0.3px;
+    /* Main text */
+    h1, h2, h3, h4 {
+        color: #F4F6FF !important;
+        letter-spacing: -0.7px;
     }
 
     p, li {
-        color: #4C5B72;
-        line-height: 1.7;
+        color: #B3BED3;
+        line-height: 1.8;
     }
 
-    /* ---------- Buttons ---------- */
+    /* =========================================
+       SIDEBAR
+    ========================================= */
 
-    .stButton button,
-    .stLinkButton a {
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        min-height: 43px;
-        transition: all 0.18s ease;
+    section[data-testid="stSidebar"] {
+        background: #10172A;
+        border-right: 1px solid #252E47;
     }
+
+    section[data-testid="stSidebar"] * {
+        color: #E8ECFA;
+    }
+
+    section[data-testid="stSidebar"] .stButton button {
+        background: #141E34;
+        color: #E8ECFA;
+        border: 1px solid #2A3550;
+        border-radius: 10px;
+        text-align: left;
+        min-height: 44px;
+        transition: 0.2s ease;
+    }
+
+    section[data-testid="stSidebar"] .stButton button:hover {
+        background: #253052;
+        border-color: #8C7BFA;
+        color: #FFFFFF;
+    }
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
 
     .stButton button {
-        border: 1px solid #D5DDEA;
+        background: #171F35;
+        color: #F3F5FF;
+        border: 1px solid #34405D;
+        border-radius: 10px;
+        min-height: 45px;
+        font-weight: 600;
+        transition: all 0.2s ease;
     }
 
     .stButton button:hover {
-        border-color: #345EA8;
-        color: #244D91;
+        background: #253252;
+        border-color: #9B8AFB;
+        color: #FFFFFF;
     }
 
     .stLinkButton a {
-        border: 1px solid #254D8B;
-        background: #254D8B;
-        color: white !important;
+        background: #8B78F6;
+        color: #FFFFFF !important;
+        border: 1px solid #8B78F6;
+        border-radius: 10px;
+        min-height: 45px;
+        font-weight: 650;
+        justify-content: center;
+        transition: all 0.2s ease;
     }
 
     .stLinkButton a:hover {
-        background: #193A6B;
-        border-color: #193A6B;
+        background: #7561E6;
+        border-color: #7561E6;
+        color: #FFFFFF !important;
     }
 
-    /* ---------- Dividers ---------- */
+    /* =========================================
+       METRICS
+    ========================================= */
+
+    [data-testid="stMetric"] {
+        background: #121B30;
+        border: 1px solid #293550;
+        border-radius: 14px;
+        padding: 20px;
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: #9AA8C3 !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: #FFFFFF !important;
+    }
+
+    /* =========================================
+       CONTAINERS
+    ========================================= */
+
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        background: #111A2D;
+        border: 1px solid #293550 !important;
+        border-radius: 16px;
+    }
+
+    /* =========================================
+       DIVIDERS
+    ========================================= */
 
     hr {
-        border-color: #DDE3ED;
+        border-color: #29334C;
     }
 
-    /* ---------- Small labels ---------- */
+    /* =========================================
+       DESIGN LABELS
+    ========================================= */
 
     .eyebrow {
-        color: #526B91;
-        font-size: 0.73rem;
+        color: #A89BFF;
+        font-size: 0.75rem;
         font-weight: 750;
-        letter-spacing: 2px;
-        margin-bottom: 0.65rem;
+        letter-spacing: 3px;
+        margin-bottom: 0.8rem;
     }
 
-    .subtitle {
-        color: #65738A;
-        font-size: 1rem;
-        line-height: 1.8;
-        max-width: 750px;
+    .hero-title {
+        color: #FFFFFF;
+        font-size: clamp(2.7rem, 5vw, 4.7rem);
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -2.5px;
+        margin-bottom: 1rem;
+    }
+
+    .gradient-word {
+        background: linear-gradient(
+            90deg,
+            #B6A8FF 0%,
+            #8BBAFF 50%,
+            #70E3D4 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+        color: #AAB6CF;
+        font-size: 1.05rem;
+        line-height: 1.9;
+        max-width: 760px;
     }
 
     .section-label {
-        color: #526B91;
-        font-size: 0.75rem;
+        color: #9C8CFF;
+        font-size: 0.73rem;
         font-weight: 750;
-        letter-spacing: 1.7px;
+        letter-spacing: 2.5px;
         margin-bottom: 0.5rem;
+    }
+
+    .small-muted {
+        color: #8492AE;
+        font-size: 0.88rem;
     }
 
     .footer {
         text-align: center;
-        color: #78859A;
-        font-size: 0.83rem;
-        padding-top: 1rem;
-        line-height: 1.8;
+        color: #7785A2;
+        font-size: 0.85rem;
+        line-height: 2;
+        padding-top: 1.2rem;
     }
 
-    /* ---------- Metrics ---------- */
-
-    [data-testid="stMetric"] {
-        background: #FFFFFF;
-        border: 1px solid #E0E6EF;
-        border-radius: 10px;
-        padding: 18px 20px;
-    }
-
-    [data-testid="stMetricLabel"] {
-        color: #68768B;
-    }
-
-    [data-testid="stMetricValue"] {
-        color: #1D355D;
-    }
-
-    /* ---------- Containers ---------- */
-
-    [data-testid="stVerticalBlockBorderWrapper"] {
-        background: #FFFFFF;
-        border-color: #E0E6EF !important;
-        border-radius: 12px;
-    }
-
-    /* ---------- Alerts ---------- */
-
-    [data-testid="stAlert"] {
-        border-radius: 8px;
-    }
-
-    /* ---------- Mobile adjustments ---------- */
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
 
     @media (max-width: 768px) {
         .block-container {
@@ -225,8 +262,8 @@ st.markdown(
             padding-right: 1rem;
         }
 
-        h1 {
-            font-size: 2rem !important;
+        .hero-title {
+            letter-spacing: -1.3px;
         }
     }
     </style>
@@ -234,235 +271,249 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =========================================================
+# =====================================================
 # SIDEBAR
-# =========================================================
+# =====================================================
 
 with st.sidebar:
 
-    st.markdown("## ◈ CREATIVE UNIVERSE")
-    st.caption("DIGITAL PROJECT PORTAL")
+    st.markdown("## ✦ Creative")
+    st.markdown("### Universe")
+
+    st.markdown(
+        '<p style="color:#8795B2;font-size:0.85rem;">'
+        "YOUR CREATIVE SPACE"
+        "</p>",
+        unsafe_allow_html=True
+    )
 
     st.divider()
 
     st.markdown("##### WORKSPACE")
 
-    if st.button(
-        "▦   Overview",
-        key="overview_nav",
-        use_container_width=True
-    ):
-        st.session_state.page = "Overview"
+    if st.button("⌂   Home", use_container_width=True):
+        st.session_state.page = "Home"
         st.session_state.preview = None
         st.rerun()
 
-    if st.button(
-        "🎨   AI Drawing Studio",
-        key="drawing_nav",
-        use_container_width=True
-    ):
+    if st.button("🎨   AI Drawing Studio", use_container_width=True):
         st.session_state.page = "AI Drawing Studio"
         st.session_state.preview = None
         st.rerun()
 
-    if st.button(
-        "✦   MoodSpark",
-        key="moodspark_nav",
-        use_container_width=True
-    ):
+    if st.button("✦   MoodSpark", use_container_width=True):
         st.session_state.page = "MoodSpark"
         st.session_state.preview = None
         st.rerun()
 
     st.divider()
 
-    st.markdown("##### ABOUT THIS PORTAL")
+    st.markdown("##### THE PLATFORM")
 
     st.caption(
-        "A centralized workspace for discovering and accessing "
-        "creative digital projects."
+        "A curated space for creative applications, "
+        "digital experiences, and innovative ideas."
     )
 
     st.write("")
 
-    st.caption("PLATFORM")
-    st.caption("Creative Universe · v1.0")
-
-# =========================================================
-# MAIN HEADER
-# =========================================================
-
-header_left, header_right = st.columns([4, 1])
-
-with header_left:
-    st.markdown(
-        '<div class="eyebrow">DIGITAL EXPERIENCE PLATFORM</div>',
-        unsafe_allow_html=True
-    )
-
-    st.title("Creative Universe")
-
     st.markdown(
         """
-        <div class="subtitle">
-            A unified platform for exploring creative applications,
-            interactive experiences, and technology-driven ideas.
+        <div style="
+            background:#171F35;
+            border:1px solid #2D3956;
+            border-radius:12px;
+            padding:14px;
+        ">
+            <div style="color:#9B8AFB;font-size:0.72rem;
+                        letter-spacing:1.5px;">
+                PLATFORM STATUS
+            </div>
+            <div style="color:#E8ECFA;font-weight:600;
+                        margin-top:6px;">
+                ● Project portal
+            </div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-with header_right:
-    st.write("")
-    st.caption("PROJECT PORTAL")
-    st.markdown("**● Operational**")
+# =====================================================
+# HOME PAGE
+# =====================================================
 
-st.divider()
+if st.session_state.page == "Home":
 
-# =========================================================
-# OVERVIEW PAGE
-# =========================================================
-
-if st.session_state.page == "Overview":
-
+    # Hero section
     st.markdown(
-        '<div class="section-label">WORKSPACE OVERVIEW</div>',
+        """
+        <div class="eyebrow">
+            WELCOME TO YOUR CREATIVE SPACE
+        </div>
+
+        <div class="hero-title">
+            Ideas become<br>
+            <span class="gradient-word">
+                experiences.
+            </span>
+        </div>
+
+        <div class="hero-description">
+            Welcome to Creative Universe — a central destination
+            for exploring creative applications, discovering ideas,
+            and experiencing technology in new ways.
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
-    st.subheader("Projects at a glance")
-
-    st.write(
-        "Access the available applications, review project ownership, "
-        "and launch an experience directly from this workspace."
-    )
-
+    st.write("")
     st.write("")
 
-    # Summary metrics
-    metric1, metric2, metric3 = st.columns(3)
+    # Quick summary
+    c1, c2, c3 = st.columns(3)
 
-    with metric1:
-        st.metric(
-            label="Total Projects",
-            value="02",
-            help="Number of projects listed in this portal."
-        )
+    with c1:
+        st.metric("PROJECTS", "02", "Creative applications")
 
-    with metric2:
-        st.metric(
-            label="Project Categories",
-            value="02",
-            help="AI and creativity, and mood-focused experiences."
-        )
+    with c2:
+        st.metric("CATEGORIES", "02", "Different experiences")
 
-    with metric3:
-        st.metric(
-            label="Access",
-            value="Centralized",
-            help="Both projects are available through this portal."
-        )
+    with c3:
+        st.metric("ACCESS", "One hub", "Centralized workspace")
 
     st.write("")
     st.divider()
 
-    # Project section
-    project_header, project_count = st.columns([4, 1])
+    # Projects heading
+    st.markdown(
+        '<div class="section-label">DISCOVER</div>',
+        unsafe_allow_html=True
+    )
 
-    with project_header:
-        st.markdown(
-            '<div class="section-label">PORTFOLIO</div>',
-            unsafe_allow_html=True
-        )
-        st.subheader("Featured projects")
+    st.markdown("## Explore our projects")
 
-    with project_count:
-        st.write("")
-        st.caption("02 APPLICATIONS")
+    st.markdown(
+        '<p class="small-muted">'
+        "A selection of digital experiences, ready to explore."
+        "</p>",
+        unsafe_allow_html=True
+    )
 
     st.write("")
 
     left, right = st.columns(2, gap="large")
 
-    # -----------------------------------------------------
-    # PROJECT 01
-    # -----------------------------------------------------
+    # -------------------------------------------------
+    # AI DRAWING STUDIO CARD
+    # -------------------------------------------------
 
     with left:
 
         with st.container(border=True):
 
-            top_left, top_right = st.columns([3, 1])
+            st.markdown(
+                """
+                <div style="
+                    color:#A99AFF;
+                    font-size:0.75rem;
+                    font-weight:700;
+                    letter-spacing:2px;
+                ">
+                    PROJECT 01 &nbsp; / &nbsp; AI & CREATIVITY
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-            with top_left:
-                st.caption("PROJECT 01")
-                st.markdown("## 🎨 AI Drawing Studio")
+            st.write("")
 
-            with top_right:
-                st.write("")
-                st.caption("AI / CREATIVE")
+            st.markdown("## 🎨 AI Drawing Studio")
+
+            st.markdown(
+                """
+                <p style="color:#AAB6CF;min-height:85px;">
+                    Bring imagination to life through an interactive
+                    digital drawing experience focused on creativity
+                    and AI-assisted artwork.
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
 
             st.divider()
 
-            st.write(PROJECTS["AI Drawing Studio"]["description"])
-
-            st.write("")
-            st.caption("PROJECT OWNER")
+            st.caption("CREATED BY")
             st.markdown("**Purnima Kushwaha**")
 
             st.write("")
 
             st.link_button(
-                "Launch application ↗",
+                "Explore project ↗",
                 PROJECTS["AI Drawing Studio"]["url"],
                 use_container_width=True
             )
 
             if st.button(
-                "Open embedded preview",
-                key="drawing_preview",
+                "View inside portal",
+                key="preview_drawing",
                 use_container_width=True
             ):
                 st.session_state.preview = "AI Drawing Studio"
                 st.rerun()
 
-    # -----------------------------------------------------
-    # PROJECT 02
-    # -----------------------------------------------------
+    # -------------------------------------------------
+    # MOODSPARK CARD
+    # -------------------------------------------------
 
     with right:
 
         with st.container(border=True):
 
-            top_left, top_right = st.columns([3, 1])
+            st.markdown(
+                """
+                <div style="
+                    color:#67DCD0;
+                    font-size:0.75rem;
+                    font-weight:700;
+                    letter-spacing:2px;
+                ">
+                    PROJECT 02 &nbsp; / &nbsp; MOOD & WELLBEING
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-            with top_left:
-                st.caption("PROJECT 02")
-                st.markdown("## ✦ MoodSpark")
+            st.write("")
 
-            with top_right:
-                st.write("")
-                st.caption("MOOD / WELLBEING")
+            st.markdown("## ✦ MoodSpark")
+
+            st.markdown(
+                """
+                <p style="color:#AAB6CF;min-height:85px;">
+                    Explore an interactive digital experience centred
+                    around moods, emotions, and creative engagement.
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
 
             st.divider()
 
-            st.write(PROJECTS["MoodSpark"]["description"])
-
-            st.write("")
-            st.caption("PROJECT OWNER")
+            st.caption("CREATED BY")
             st.markdown("**Kritika**")
 
             st.write("")
 
             st.link_button(
-                "Launch application ↗",
+                "Explore project ↗",
                 PROJECTS["MoodSpark"]["url"],
                 use_container_width=True
             )
 
             if st.button(
-                "Open embedded preview",
-                key="moodspark_preview",
+                "View inside portal",
+                key="preview_moodspark",
                 use_container_width=True
             ):
                 st.session_state.preview = "MoodSpark"
@@ -471,37 +522,37 @@ if st.session_state.page == "Overview":
     st.write("")
     st.divider()
 
-    # Platform information
+    # About section
     st.markdown(
-        '<div class="section-label">PLATFORM INFORMATION</div>',
+        '<div class="section-label">OUR APPROACH</div>',
         unsafe_allow_html=True
     )
 
-    st.subheader("Designed for easy access")
+    st.markdown("## One space. Multiple possibilities.")
 
-    info1, info2, info3 = st.columns(3, gap="large")
+    a, b, c = st.columns(3, gap="large")
 
-    with info1:
-        st.markdown("### 01 · Centralized")
+    with a:
+        st.markdown("### ◈ &nbsp; Discover")
         st.write(
-            "Access multiple projects from a single, organized interface."
+            "Find creative digital projects in one organized space."
         )
 
-    with info2:
-        st.markdown("### 02 · Accessible")
+    with b:
+        st.markdown("### ↗ &nbsp; Explore")
         st.write(
-            "Use direct launch buttons to open project applications."
+            "Launch an application directly from its project card."
         )
 
-    with info3:
-        st.markdown("### 03 · Organized")
+    with c:
+        st.markdown("### ✧ &nbsp; Create")
         st.write(
-            "Review project descriptions and creator credits in one place."
+            "Explore different ways technology can support creativity."
         )
 
-# =========================================================
+# =====================================================
 # INDIVIDUAL PROJECT PAGE
-# =========================================================
+# =====================================================
 
 elif st.session_state.page in PROJECTS:
 
@@ -509,7 +560,9 @@ elif st.session_state.page in PROJECTS:
     project = PROJECTS[project_name]
 
     st.markdown(
-        f'<div class="section-label">PROJECT {project["number"]}</div>',
+        f'<div class="section-label">'
+        f'PROJECT {project["number"]} &nbsp; / &nbsp; PORTFOLIO'
+        f'</div>',
         unsafe_allow_html=True
     )
 
@@ -521,20 +574,20 @@ elif st.session_state.page in PROJECTS:
 
     st.divider()
 
-    details1, details2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-    with details1:
-        st.caption("PROJECT OWNER")
+    with col1:
+        st.caption("PROJECT CREATOR")
         st.markdown(f'### {project["creator"]}')
 
-    with details2:
-        st.caption("ACCESS TYPE")
+    with col2:
+        st.caption("APPLICATION TYPE")
         st.markdown("### Web application")
 
     st.write("")
 
     st.link_button(
-        f"Launch {project_name} ↗",
+        "Launch application ↗",
         project["url"],
         use_container_width=True
     )
@@ -542,23 +595,19 @@ elif st.session_state.page in PROJECTS:
     st.write("")
     st.divider()
 
-    st.subheader("Application preview")
+    st.markdown("## Application preview")
 
     st.write(
-        "You can try loading the application below. If the external "
-        "website does not permit embedding, launch it in a new tab."
+        "Load the project within the portal, or open it in a separate tab."
     )
 
-    if st.button(
-        "Load preview",
-        key=f"load_preview_{project_name}"
-    ):
+    if st.button("Load application preview", use_container_width=True):
         st.session_state.preview = project_name
         st.rerun()
 
-# =========================================================
-# EMBEDDED PREVIEW
-# =========================================================
+# =====================================================
+# APPLICATION PREVIEW
+# =====================================================
 
 if st.session_state.preview:
 
@@ -567,10 +616,10 @@ if st.session_state.preview:
 
     st.divider()
 
-    st.subheader(f'Application preview · {preview_name}')
+    st.markdown(f"## {preview_project['icon']} {preview_name}")
 
     st.link_button(
-        "Open in a new browser tab ↗",
+        "Open in a new tab ↗",
         preview_project["url"],
         use_container_width=True
     )
@@ -581,22 +630,28 @@ if st.session_state.preview:
         scrolling=True
     )
 
-    if st.button("Close preview", key="close_preview"):
+    if st.button("Close preview"):
         st.session_state.preview = None
         st.rerun()
 
-# =========================================================
+# =====================================================
 # FOOTER
-# =========================================================
+# =====================================================
 
 st.divider()
 
 st.markdown(
     """
     <div class="footer">
-        <strong>CREATIVE UNIVERSE</strong><br>
-        A centralized portal for creative digital experiences.<br>
-        Built with Streamlit.
+        <strong style="color:#DDE5F8;">
+            ✦ CREATIVE UNIVERSE
+        </strong>
+        <br>
+        A home for creativity, ideas, and digital experiences.
+        <br>
+        <span style="color:#63718D;">
+            Designed with Streamlit
+        </span>
     </div>
     """,
     unsafe_allow_html=True
