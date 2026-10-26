@@ -16,8 +16,8 @@ st.set_page_config(
 # APPLICATION URLS
 # =====================================================
 
-DRAWING_URL = "https://ai-drawing-studio.streamlit.app/"
-MOODSPARK_URL = "https://moodspark-pe81.onrender.com/"
+DRAWING_URL = "https://aicharacterstudio-26.streamlit.app"
+MOODSPARK_URL = "https://moodspark-pe81.onrender.com"
 
 
 # =====================================================
@@ -42,21 +42,22 @@ def same_tab_link(url, label):
 
     st.markdown(
         f"""
-        <a href="{safe_url}" target="_self" style="
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 13px 16px;
-            margin: 8px 0;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 15px;
-        ">
+        <a href="{safe_url}" target="_self" rel="noopener"
+           style="
+                display:block;
+                width:100%;
+                box-sizing:border-box;
+                padding:14px 16px;
+                margin:8px 0;
+                text-align:center;
+                text-decoration:none;
+                color:#ffffff;
+                background:linear-gradient(90deg,#6366f1,#8b5cf6);
+                border:1px solid rgba(255,255,255,0.18);
+                border-radius:12px;
+                font-weight:700;
+                font-size:15px;
+           ">
             {safe_label}
         </a>
         """,
@@ -77,22 +78,9 @@ st.markdown(
 
     .stApp {
         background:
-            radial-gradient(
-                circle at 10% 10%,
-                #172554 0%,
-                transparent 35%
-            ),
-            radial-gradient(
-                circle at 90% 20%,
-                #312e81 0%,
-                transparent 30%
-            ),
-            linear-gradient(
-                135deg,
-                #080d1b,
-                #10172a 55%,
-                #080d1b
-            );
+            radial-gradient(circle at 10% 10%, #172554 0%, transparent 35%),
+            radial-gradient(circle at 90% 20%, #312e81 0%, transparent 30%),
+            linear-gradient(135deg, #080d1b, #10172a 55%, #080d1b);
         color: #f8fafc;
         font-family: 'Inter', sans-serif;
     }
@@ -231,6 +219,7 @@ st.markdown(
 
     div.stButton > button:hover {
         border-color: #818cf8;
+        color: #c4b5fd;
     }
 
     #MainMenu {
@@ -275,15 +264,23 @@ with st.sidebar:
     st.markdown("---")
     st.caption("NAVIGATION")
 
-    if st.button("🏠 Home", key="nav_home"):
+    if st.button("🏠 Home", key="nav_home", use_container_width=True):
         navigate_to("Home")
         st.rerun()
 
-    if st.button("🎨 AI Drawing Studio", key="nav_drawing"):
+    if st.button(
+        "🎨 AI Drawing Studio",
+        key="nav_drawing",
+        use_container_width=True
+    ):
         navigate_to("AI Drawing Studio")
         st.rerun()
 
-    if st.button("✨ MoodSpark", key="nav_moodspark"):
+    if st.button(
+        "✨ MoodSpark",
+        key="nav_moodspark",
+        use_container_width=True
+    ):
         navigate_to("MoodSpark")
         st.rerun()
 
@@ -321,9 +318,7 @@ if st.session_state.page == "Home":
     )
 
     st.markdown(
-        '<div class="section-title">'
-        'Explore Your Creative Space'
-        '</div>',
+        '<div class="section-title">Explore Your Creative Space</div>',
         unsafe_allow_html=True
     )
 
@@ -336,7 +331,9 @@ if st.session_state.page == "Home":
 
     col1, col2 = st.columns(2, gap="large")
 
-    # ---------------- DRAWING STUDIO CARD ----------------
+    # -------------------------------------------------
+    # AI DRAWING STUDIO CARD
+    # -------------------------------------------------
 
     with col1:
 
@@ -360,17 +357,20 @@ if st.session_state.page == "Home":
 
         if st.button(
             "🎨 Explore Drawing Studio",
-            key="home_explore_drawing"
+            key="home_explore_drawing",
+            use_container_width=True
         ):
             navigate_to("AI Drawing Studio")
             st.rerun()
 
         same_tab_link(
             DRAWING_URL,
-            "🎨 Launch Drawing Studio"
+            "🚀 Launch AI Drawing Studio"
         )
 
-    # ---------------- MOODSPARK CARD ----------------
+    # -------------------------------------------------
+    # MOODSPARK CARD
+    # -------------------------------------------------
 
     with col2:
 
@@ -394,7 +394,8 @@ if st.session_state.page == "Home":
 
         if st.button(
             "✨ Explore MoodSpark",
-            key="home_explore_moodspark"
+            key="home_explore_moodspark",
+            use_container_width=True
         ):
             navigate_to("MoodSpark")
             st.rerun()
@@ -404,7 +405,9 @@ if st.session_state.page == "Home":
             "✨ Launch MoodSpark"
         )
 
-    # ---------------- FOOTER ----------------
+    # -------------------------------------------------
+    # FOOTER
+    # -------------------------------------------------
 
     st.markdown(
         """
@@ -442,7 +445,7 @@ elif st.session_state.page == "AI Drawing Studio":
         <div class="info-box">
             <strong>Your creative workspace is ready!</strong>
             <br>
-            Launch the Drawing Studio directly in this browser tab.
+            Open AI Drawing Studio in this browser tab.
         </div>
         """,
         unsafe_allow_html=True
@@ -455,7 +458,8 @@ elif st.session_state.page == "AI Drawing Studio":
 
     if st.button(
         "🏠 Back to Home",
-        key="drawing_back"
+        key="drawing_back",
+        use_container_width=True
     ):
         navigate_to("Home")
         st.rerun()
@@ -486,7 +490,7 @@ elif st.session_state.page == "MoodSpark":
         <div class="info-box">
             <strong>Welcome to MoodSpark!</strong>
             <br>
-            Launch MoodSpark directly in this browser tab.
+            Open MoodSpark in this browser tab.
         </div>
         """,
         unsafe_allow_html=True
@@ -499,7 +503,8 @@ elif st.session_state.page == "MoodSpark":
 
     if st.button(
         "🏠 Back to Home",
-        key="moodspark_back"
+        key="moodspark_back",
+        use_container_width=True
     ):
         navigate_to("Home")
         st.rerun()
