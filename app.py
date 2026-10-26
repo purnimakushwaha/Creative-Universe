@@ -1,5 +1,4 @@
 import streamlit as st
-import html
 
 # =====================================================
 # PAGE CONFIGURATION
@@ -36,32 +35,13 @@ def navigate_to(page_name):
 # SAME-TAB LINK FUNCTION
 # =====================================================
 
-def same_tab_link(url, label):
-    safe_url = html.escape(url, quote=True)
-    safe_label = html.escape(label)
-
-    st.markdown(
-        f"""
-        <a href="{safe_url}" target="_self" rel="noopener"
-           style="
-                display:block;
-                width:100%;
-                box-sizing:border-box;
-                padding:14px 16px;
-                margin:8px 0;
-                text-align:center;
-                text-decoration:none;
-                color:#ffffff;
-                background:linear-gradient(90deg,#6366f1,#8b5cf6);
-                border:1px solid rgba(255,255,255,0.18);
-                border-radius:12px;
-                font-weight:700;
-                font-size:15px;
-           ">
-            {safe_label}
-        </a>
-        """,
-        unsafe_allow_html=True
+def launch_link(url, label):
+    # Streamlit's native link button is more reliable than raw HTML links
+    # inside the app's embedded frontend. It opens the destination safely.
+    st.link_button(
+        label,
+        url,
+        use_container_width=True,
     )
 
 
@@ -209,12 +189,26 @@ st.markdown(
         border-top: 1px solid rgba(148,163,184,0.18);
     }
 
-    div.stButton > button {
+    div.stButton > button,
+    div.stLinkButton > a {
         width: 100%;
+        box-sizing: border-box;
         border-radius: 10px;
         font-weight: 600;
         min-height: 44px;
         transition: 0.2s ease;
+        justify-content: center;
+    }
+
+    div.stLinkButton > a {
+        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: #ffffff;
+    }
+
+    div.stLinkButton > a:hover {
+        border-color: #c4b5fd;
+        color: #ffffff;
     }
 
     div.stButton > button:hover {
@@ -363,7 +357,7 @@ if st.session_state.page == "Home":
             navigate_to("AI Drawing Studio")
             st.rerun()
 
-        same_tab_link(
+        launch_link(
             DRAWING_URL,
             "🚀 Launch AI Drawing Studio"
         )
@@ -400,7 +394,7 @@ if st.session_state.page == "Home":
             navigate_to("MoodSpark")
             st.rerun()
 
-        same_tab_link(
+        launch_link(
             MOODSPARK_URL,
             "✨ Launch MoodSpark"
         )
@@ -451,7 +445,7 @@ elif st.session_state.page == "AI Drawing Studio":
         unsafe_allow_html=True
     )
 
-    same_tab_link(
+    launch_link(
         DRAWING_URL,
         "🚀 Launch AI Drawing Studio"
     )
@@ -496,7 +490,7 @@ elif st.session_state.page == "MoodSpark":
         unsafe_allow_html=True
     )
 
-    same_tab_link(
+    launch_link(
         MOODSPARK_URL,
         "✨ Launch MoodSpark"
     )
