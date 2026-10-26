@@ -1,8 +1,8 @@
 import streamlit as st
 
-# ==================================================
+# =====================================================
 # PAGE CONFIGURATION
-# ==================================================
+# =====================================================
 
 st.set_page_config(
     page_title="Creative Universe",
@@ -11,35 +11,33 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================================================
-# APPLICATION URLS
-# ==================================================
+# =====================================================
+# APP LINKS
+# =====================================================
 
 DRAWING_URL = "https://ai-drawing-studio.streamlit.app/"
 MOODSPARK_URL = "https://moodspark-pe81.onrender.com/"
 
-# ==================================================
+# =====================================================
 # SESSION STATE
-# ==================================================
+# =====================================================
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 
-def navigate_to(page_name):
-    st.session_state.page = page_name
+def navigate_to(page):
+    st.session_state.page = page
 
 
-# ==================================================
+# =====================================================
 # CUSTOM CSS
-# ==================================================
+# =====================================================
 
 st.markdown(
     """
     <style>
-    @import url(
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap'
-    );
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
     .stApp {
         background:
@@ -60,11 +58,12 @@ st.markdown(
                 #080d1b
             );
         color: #f8fafc;
+        font-family: 'Inter', sans-serif;
     }
 
     [data-testid="stSidebar"] {
         background: #0b1120;
-        border-right: 1px solid rgba(148, 163, 184, 0.15);
+        border-right: 1px solid rgba(148, 163, 184, 0.18);
     }
 
     [data-testid="stSidebar"] * {
@@ -72,29 +71,29 @@ st.markdown(
     }
 
     .hero {
-        padding: 38px 20px;
+        padding: 42px 24px;
         text-align: center;
-        border: 1px solid rgba(148, 163, 184, 0.20);
+        border: 1px solid rgba(148, 163, 184, 0.22);
         border-radius: 24px;
         background: linear-gradient(
             135deg,
-            rgba(30, 41, 59, 0.90),
-            rgba(49, 46, 129, 0.50)
+            rgba(30, 41, 59, 0.95),
+            rgba(49, 46, 129, 0.65)
         );
-        margin-bottom: 30px;
+        margin-bottom: 32px;
     }
 
     .hero-icon {
         font-size: 48px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 
     .hero-title {
         font-family: 'Orbitron', sans-serif;
-        font-size: clamp(28px, 5vw, 46px);
+        font-size: clamp(28px, 5vw, 44px);
         font-weight: 800;
         color: #ffffff;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
     }
 
     .hero-subtitle {
@@ -108,36 +107,37 @@ st.markdown(
     .section-title {
         font-size: 25px;
         font-weight: 800;
-        color: #f8fafc;
-        margin: 20px 0 8px 0;
+        color: #ffffff;
+        margin-bottom: 8px;
     }
 
     .section-description {
-        color: #94a3b8;
+        color: #a5b4fc;
         font-size: 14px;
-        margin-bottom: 22px;
+        margin-bottom: 24px;
     }
 
     .app-card {
-        min-height: 255px;
-        padding: 24px;
+        box-sizing: border-box;
+        min-height: 260px;
+        padding: 25px;
         border-radius: 20px;
-        background: rgba(15, 23, 42, 0.85);
-        border: 1px solid rgba(148, 163, 184, 0.20);
-        margin-bottom: 12px;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        margin-bottom: 15px;
     }
 
     .drawing-card {
-        border-top: 3px solid #8b5cf6;
+        border-top: 4px solid #8b5cf6;
     }
 
     .mood-card {
-        border-top: 3px solid #06b6d4;
+        border-top: 4px solid #06b6d4;
     }
 
     .card-icon {
         font-size: 38px;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }
 
     .card-title {
@@ -151,25 +151,25 @@ st.markdown(
         font-size: 14px;
         line-height: 1.8;
         color: #cbd5e1;
-        min-height: 80px;
+        margin-bottom: 18px;
     }
 
     .feature-tag {
         display: inline-block;
-        padding: 5px 10px;
-        margin: 5px 4px 0 0;
+        padding: 6px 10px;
+        margin: 4px 3px 4px 0;
         border-radius: 20px;
         font-size: 11px;
-        color: #e2e8f0;
+        color: #e0e7ff;
         background: rgba(99, 102, 241, 0.18);
-        border: 1px solid rgba(129, 140, 248, 0.25);
+        border: 1px solid rgba(129, 140, 248, 0.28);
     }
 
     .info-box {
-        padding: 16px;
-        border-radius: 12px;
-        background: rgba(30, 41, 59, 0.80);
-        border: 1px solid rgba(148, 163, 184, 0.15);
+        padding: 18px;
+        border-radius: 14px;
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.2);
         color: #cbd5e1;
         font-size: 14px;
         line-height: 1.8;
@@ -180,17 +180,16 @@ st.markdown(
         text-align: center;
         color: #94a3b8;
         font-size: 12px;
-        padding: 25px 10px 10px 10px;
-        margin-top: 30px;
-        border-top: 1px solid rgba(148, 163, 184, 0.15);
+        padding: 25px 10px;
+        margin-top: 35px;
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
     }
 
     div.stButton > button,
     div.stLinkButton > a {
         border-radius: 10px;
         font-weight: 600;
-        min-height: 42px;
-        transition: 0.2s ease;
+        min-height: 44px;
     }
 
     div.stButton > button:hover,
@@ -211,33 +210,27 @@ st.markdown(
 )
 
 
-# ==================================================
-# SIDEBAR NAVIGATION
-# ==================================================
+# =====================================================
+# SIDEBAR
+# =====================================================
 
 with st.sidebar:
 
     st.markdown(
         """
-        <div style="text-align:center; padding:18px 5px;">
-            <div style="font-size:42px;">🌌</div>
-
+        <div style="text-align:center; padding:20px 5px;">
+            <div style="font-size:44px;">🌌</div>
             <div style="
                 font-family:Orbitron,sans-serif;
-                font-size:20px;
+                font-size:21px;
                 font-weight:800;
-                color:white;
-            ">
-                CREATIVE
-            </div>
-
+                color:#ffffff;
+            ">CREATIVE</div>
             <div style="
                 font-size:12px;
-                color:#94a3b8;
-                letter-spacing:3px;
-            ">
-                UNIVERSE
-            </div>
+                color:#a5b4fc;
+                letter-spacing:4px;
+            ">UNIVERSE</div>
         </div>
         """,
         unsafe_allow_html=True
@@ -246,27 +239,15 @@ with st.sidebar:
     st.markdown("---")
     st.caption("NAVIGATION")
 
-    if st.button(
-        "🏠 Home",
-        use_container_width=True,
-        key="nav_home"
-    ):
+    if st.button("🏠 Home", use_container_width=True):
         navigate_to("Home")
         st.rerun()
 
-    if st.button(
-        "🎨 AI Drawing Studio",
-        use_container_width=True,
-        key="nav_drawing"
-    ):
+    if st.button("🎨 AI Drawing Studio", use_container_width=True):
         navigate_to("AI Drawing Studio")
         st.rerun()
 
-    if st.button(
-        "✨ MoodSpark",
-        use_container_width=True,
-        key="nav_moodspark"
-    ):
+    if st.button("✨ MoodSpark", use_container_width=True):
         navigate_to("MoodSpark")
         st.rerun()
 
@@ -275,18 +256,17 @@ with st.sidebar:
     st.markdown("### 💡 Explore")
 
     st.caption(
-        "Discover creativity, express yourself, "
-        "and explore new ideas."
+        "A creative space to explore ideas, "
+        "express yourself, and discover something new."
     )
 
     st.markdown("---")
+    st.caption("Made with Python and Streamlit")
 
-    st.caption("Built with Python and Streamlit")
 
-
-# ==================================================
+# =====================================================
 # HOME PAGE
-# ==================================================
+# =====================================================
 
 if st.session_state.page == "Home":
 
@@ -294,11 +274,7 @@ if st.session_state.page == "Home":
         """
         <div class="hero">
             <div class="hero-icon">🌌</div>
-
-            <div class="hero-title">
-                Creative Universe
-            </div>
-
+            <div class="hero-title">Creative Universe</div>
             <div class="hero-subtitle">
                 Your personal space to create, explore, and express.
                 Discover creative tools designed to turn your
@@ -325,30 +301,23 @@ if st.session_state.page == "Home":
 
     col1, col2 = st.columns(2, gap="large")
 
-    # ---------------- DRAWING STUDIO CARD ----------------
+    # ---------------- AI DRAWING STUDIO CARD ----------------
 
     with col1:
 
         st.markdown(
             """
             <div class="app-card drawing-card">
-
                 <div class="card-icon">🎨</div>
-
-                <div class="card-title">
-                    AI Drawing Studio
-                </div>
-
+                <div class="card-title">AI Drawing Studio</div>
                 <div class="card-description">
                     Bring your imagination to life. Explore
                     AI-powered drawing and transform your ideas
                     into visual concepts.
                 </div>
-
                 <span class="feature-tag">AI Creativity</span>
                 <span class="feature-tag">Digital Art</span>
                 <span class="feature-tag">Visual Ideas</span>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -375,23 +344,16 @@ if st.session_state.page == "Home":
         st.markdown(
             """
             <div class="app-card mood-card">
-
                 <div class="card-icon">✨</div>
-
-                <div class="card-title">
-                    MoodSpark
-                </div>
-
+                <div class="card-title">MoodSpark</div>
                 <div class="card-description">
                     Discover a space for moods, inspiration,
                     and positive moments. Take a break and
                     explore something uplifting.
                 </div>
-
-                <span class="feature-tag">Mood & Inspiration</span>
+                <span class="feature-tag">Mood &amp; Inspiration</span>
                 <span class="feature-tag">Self-Expression</span>
                 <span class="feature-tag">Positive Vibes</span>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -425,9 +387,9 @@ if st.session_state.page == "Home":
     )
 
 
-# ==================================================
+# =====================================================
 # AI DRAWING STUDIO PAGE
-# ==================================================
+# =====================================================
 
 elif st.session_state.page == "AI Drawing Studio":
 
@@ -435,14 +397,9 @@ elif st.session_state.page == "AI Drawing Studio":
         """
         <div class="hero">
             <div class="hero-icon">🎨</div>
-
-            <div class="hero-title">
-                AI Drawing Studio
-            </div>
-
+            <div class="hero-title">AI Drawing Studio</div>
             <div class="hero-subtitle">
-                Bring your imagination to life with
-                AI-powered creativity.
+                Bring your imagination to life with AI-powered creativity.
             </div>
         </div>
         """,
@@ -454,8 +411,9 @@ elif st.session_state.page == "AI Drawing Studio":
         <div class="info-box">
             <strong>Your creative workspace is ready!</strong>
             <br>
-            Launch AI Drawing Studio directly to avoid
-            embedded-browser redirect and session issues.
+            Open the Drawing Studio directly for the best experience.
+            The external application is opened separately to avoid
+            embedded-browser redirect problems.
         </div>
         """,
         unsafe_allow_html=True
@@ -467,22 +425,16 @@ elif st.session_state.page == "AI Drawing Studio":
         use_container_width=True
     )
 
-    st.caption(
-        "The Drawing Studio opens directly in a new browser tab."
-    )
+    st.write("The Drawing Studio will open in a separate browser tab.")
 
-    if st.button(
-        "🏠 Back to Home",
-        use_container_width=True,
-        key="drawing_back"
-    ):
+    if st.button("🏠 Back to Home", use_container_width=True):
         navigate_to("Home")
         st.rerun()
 
 
-# ==================================================
+# =====================================================
 # MOODSPARK PAGE
-# ==================================================
+# =====================================================
 
 elif st.session_state.page == "MoodSpark":
 
@@ -490,11 +442,7 @@ elif st.session_state.page == "MoodSpark":
         """
         <div class="hero">
             <div class="hero-icon">✨</div>
-
-            <div class="hero-title">
-                MoodSpark
-            </div>
-
+            <div class="hero-title">MoodSpark</div>
             <div class="hero-subtitle">
                 Explore inspiration, discover your mood,
                 and enjoy a creative space designed for you.
@@ -509,7 +457,7 @@ elif st.session_state.page == "MoodSpark":
         <div class="info-box">
             <strong>Welcome to MoodSpark!</strong>
             <br>
-            Open the application directly to explore its features.
+            Open MoodSpark directly to explore its features.
         </div>
         """,
         unsafe_allow_html=True
@@ -521,14 +469,6 @@ elif st.session_state.page == "MoodSpark":
         use_container_width=True
     )
 
-    st.caption(
-        "MoodSpark opens directly in a new browser tab."
-    )
-
-    if st.button(
-        "🏠 Back to Home",
-        use_container_width=True,
-        key="moodspark_back"
-    ):
+    if st.button("🏠 Back to Home", use_container_width=True):
         navigate_to("Home")
         st.rerun()
